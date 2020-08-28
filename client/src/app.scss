@@ -1,0 +1,63 @@
+/* Variables */ 
+$bg-color:#bdc3c7;
+$navbar-bg: darken(#414850, 10%);
+$main-color: #414850;
+$daycell-bg: #74b9ff;
+
+@import './components/layout/navbar.scss';
+@import './components/layout/homepage.scss';
+@import './components/auth/auth.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+
+/* Global */
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+body {
+  margin: 0;
+	background-color: $bg-color;
+
+
+}
+
+input {
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  // width: 100%;
+  // height: 100%;
+  background: $main-color;
+  color: white;
+  padding: .5em;
+  outline: none;
+} 
