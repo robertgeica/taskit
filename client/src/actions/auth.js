@@ -43,6 +43,14 @@ export const register = ({ email, password }) => async (dispatch) => {
     console.log('success registering new user');
 
 		dispatch(loadUser());
+		let profile = {
+			name: '',
+			image: '',
+			adress: '',
+			phone: ''
+		};
+		dispatch(handleCreateProfile(profile));
+
 	} catch (error) {
 		if (error) {
 			console.log('Error', error);

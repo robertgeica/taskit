@@ -19,29 +19,23 @@ export const loadProfile = () => async (dispatch) => {
 };
 
 // create profile
-// export const handleCreateProfile = () => async (dispatch) => {
-// 	const newProfile = {
-// 		image: '',
-// 		name: '',
-// 		phone: '',
-// 		adress: ''
-// 	};
+export const handleCreateProfile = (profile) => async (dispatch) => {
 
-// 	const res = await axios.post('/profile', newProfile);
-// 	try {
-// 		dispatch({
-// 			type: ADD_PROFILE,
-// 			payload: [ newProfile ]
-// 		});
+	const res = await axios.post('/profile', profile);
+	try {
+		dispatch({
+			type: ADD_PROFILE,
+			payload: [ res ]
+		});
     
-//     dispatch(loadProfile());
+    dispatch(loadProfile());
 
-// 	} catch (error) {
-// 		dispatch({
-// 			type: PROFILE_ERROR
-// 		});
-// 	}
-// };
+	} catch (error) {
+		dispatch({
+			type: PROFILE_ERROR
+		});
+	}
+};
 
 // Edit profile
 export const handleUpdateProfile = (id, newProfile) => async (dispatch) => {
