@@ -44,6 +44,8 @@ router.post('/', auth, async (req, res) => {
 		let card = await new Card(req.body);
 		card.userId = req.user.id;
 		card.save();
+		console.log(req.body);
+		console.log(card);
 
 		res.status(200).json({ card: 'Added new card successfully!' });
 	} catch (error) {
@@ -79,12 +81,13 @@ router.post('/:id', auth, async (req, res) => {
 		let card = await Card.findById(req.params.id);
 
 		if (card.userId !== req.user.id) {
-			console.log('not allowed to delete this card');
+			console.log('not allowed to update this card');
 		}
 
 		if (!card) res.status(404).send('No card to update.');
 
-		card.cards = req.body.cards;
+		card.card = req.body.card;
+		card.cardTasks = req.body.cardTasks;
 
 		await card.save();
 		res.json('card updated successfully.');

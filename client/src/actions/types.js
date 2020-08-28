@@ -14,6 +14,13 @@ export const ADD_PROFILE = 'ADD_PROFILE';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 
+// card
+export const CARDS_LOADED = 'CARDS_LOADED';
+export const CARDS_ERROR = 'CARDS_ERROR';
+export const ADD_CARD = 'ADD_CARD';
+export const DELETE_CARD = 'DELETE_CARD';
+export const UPDATE_CARD = 'UPDATE_CARD';
+
 
 // posts
 // export const POSTS_LOADED = 'POSTS_LOADED';
