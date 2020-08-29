@@ -12,8 +12,17 @@ const CompanySchema = new Schema({
   "departaments": [
     {
       "departamentName": { type: String },
-      "departamentLeader": { type: String },
+      "departamentManager": { type: String },
       "departamentEmployees": []
     }
+  ],
+  "labelStatus": [
+    {
+      "labelPriority": {type: Number},
+      "statusName": {type: String},
+      "color": {type: String}
+    }
   ]
-})
+});
+
+module.exports = Company = mongoose.model('company', CompanySchema);
