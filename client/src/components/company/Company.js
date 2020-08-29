@@ -7,6 +7,7 @@ import AddDepartamentModal from './AddDepartamentModal';
 import AddLabelModal from './AddLabelModal';
 import UpdateDepartamentModal from './UpdateDepartamentModal';
 import UpdateLabelModal from './UpdateLabelModal';
+import AddEmployeeModal from './AddEmployeeModal';
 
 // Redux
 import { connect } from 'react-redux';
@@ -14,14 +15,14 @@ import PropTypes from 'prop-types';
 import store from '../../store/store';
 
 // Actions
-import { loadCompany, handleAddCompany, handleDeleteCompany, handleDeleteDepartament, handleDeleteLabel } from '../../actions/company';
+import { loadCompany, handleAddCompany, handleDeleteCompany, handleDeleteDepartament, handleDeleteLabel, handleAddEmployee } from '../../actions/company';
 
 const Company = ({ company }) => {
 	useEffect(() => {
 		store.dispatch(loadCompany());
 	}, []);
 
-	console.log(company);
+	// console.log(company);
 
 	const [ toggle, setToggle ] = useState(undefined);
 	const handleOpenModal = () => setToggle(true);
@@ -49,6 +50,10 @@ const Company = ({ company }) => {
   const [labelId, setLabelId] = useState(undefined);
   const handleOpenUpdateLabel= () => setUpdateLabel(true);
   const handleCloseUpdateLabel = () => setUpdateLabel(false);
+
+  const [employeeModal, setEmployeeModal] = useState(undefined);
+	const handleOpenAddEE = () => setEmployeeModal(true);
+	const handleCloseAddEE = () => setEmployeeModal(false);
 
 	return (
 		<div>
@@ -86,6 +91,13 @@ const Company = ({ company }) => {
         labelId={labelId}
       />
 
+			<AddEmployeeModal
+				employeeModal={employeeModal}
+				handleCloseAddEE={handleCloseAddEE}
+				companyId={companyId}
+				departamentId={departamentId}
+			/>
+
 			{company == null || company == undefined || company.length == 0 ? (
 				<button onClick={handleOpenModal}>create new company</button>
 			) : (
@@ -93,6 +105,7 @@ const Company = ({ company }) => {
 					<p>company name: {company[0].companyName} </p>
 					<p>adress {company[0].adress} </p>
 					<h3>Departaments </h3>
+
 					{company[0].departaments == undefined ? (
 						<p>no departament</p>
 					) : (
@@ -100,6 +113,16 @@ const Company = ({ company }) => {
 							<div key={departament._id}>
 								<p>departament name: {departament.departamentName}</p>
 								<p>departament manager: {departament.departamentManager}</p>
+								{
+									departament.departamentEmployees == null || 
+									departament.departamentEmployees == undefined || 
+									departament.departamentEmployees.length == 0  ? '' : (
+										departament.departamentEmployees.map(employee => (
+											<p>Employee Email: {employee.email} </p>
+										))
+									)
+								}
+
                 <button
                   onClick={() => {
                     handleOpenUpdateDepartament();
@@ -110,6 +133,16 @@ const Company = ({ company }) => {
                 <button
                   onClick={e => store.dispatch(handleDeleteDepartament(company[0]._id, departament._id))}
                 >delete</button>
+
+								<button
+									onClick={() => {
+										setCompanyId(company[0]._id);
+										setDepartamentId(departament._id);
+										handleOpenAddEE();
+									}}
+								>
+									add employee
+								</button>
 							</div>
 						))
 					)}

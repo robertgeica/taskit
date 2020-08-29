@@ -220,3 +220,42 @@ export const handleDeleteLabel = (id, labelId) => async dispatch => {
     });
   }
 }
+
+// handle add employee to departament
+export const handleAddEmployee = (id, depId, email) => async dispatch => {
+
+  try {
+    const res = await axios.get('/company/' + id);
+    const data = res.data;
+
+    const newData = res.data;
+    const departaments = newData.departaments;
+    let index = departaments.findIndex(obj => obj._id === depId);
+    // console.log(departaments[index].departamentEmployees);
+
+		const users = await axios.get('/company/' + id +'/find');
+    console.log(users.data);
+    let userIndex = users.data.findIndex(obj => obj.email === email);
+
+    if(users.data[userIndex] >= 0) {
+      departaments[index].departamentEmployees = [...departaments[index].departamentEmployees, users.data[userIndex]];
+    };
+
+    let newEmployee = users.data[userIndex]
+    departaments[index].departamentEmployees.push(newEmployee);
+    console.log(departaments);
+    
+    await axios.post('/company/' + id, newData);
+
+    dispatch({
+      type: ADD_COMPANY,
+      payload: [ newData ]
+    });
+    dispatch(loadCompany());
+    
+  } catch (error) {
+    dispatch({
+      type: COMPANY_ERROR
+    })
+  }
+}

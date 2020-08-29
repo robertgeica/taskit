@@ -96,4 +96,16 @@ router.post('/:id', auth, async (req, res) => {
 });
 
 
+router.get('/:id/find', async (req, res) => {
+
+	let user = await User.find({}, (err, result) => {
+		if(err) {
+			console.log(err);
+		} else {
+			res.json(result);
+		}
+	}).select('-password');
+})
+
+
 module.exports = router;
