@@ -26,19 +26,10 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const TASK_ERROR = 'TASK_ERROR';
 
-// posts
-// export const POSTS_LOADED = 'POSTS_LOADED';
-// export const POST_LOADED = 'POST_LOADED';
-// export const ERROR_LOAD = 'ERROR_LOAD';
-// export const ADD_POST = 'ADD_POST';
-// export const DELETE_POST = 'DELETE_POST';
-// export const UPDATE_POST = 'UPDATE_POST';
-
-// // pubs
-// export const PUBS_LOADED = 'PUBS_LOADED';
-// export const PUB_LOADED = 'PUB_LOADED';
-// export const ADD_PUB = 'ADD_PUB';
-// export const DELETE_PUB = 'DELETE_PUB';
-// export const UPDATE_PUB = 'UPDATE_PUB';
-
+// company
+export const COMPANY_LOADED = 'COMPANY_LOADED';
+export const COMPANY_ERROR = 'COMPANY_ERROR';
+export const ADD_COMPANY = 'ADD_COMPANY';
+export const DELETE_COMPANY = 'DELETE_COMPANY';
+export const UPDATE_COMPANY = 'UPDATE_COMPANY';
 
