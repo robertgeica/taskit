@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CARDS_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK } from './types';
+import { CARDS_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR } from './types';
 
 export const loadCards = () => async (dispatch) => {
 	const res = await axios.get('/card');
@@ -87,9 +87,6 @@ export const handleAddTask = (id, newTask) => async dispatch => {
       cardTasks: [...data.cardTasks, newTask]
     };
 
-    console.log(newCard);
-    // console.log('card to add', cards);
-
     const cards = await axios.post('/card/' + id, newCard);
 
     dispatch({
@@ -99,7 +96,58 @@ export const handleAddTask = (id, newTask) => async dispatch => {
     dispatch(loadCards());
   } catch (error) {
     dispatch({
-      type: CARDS_ERROR
+      type: TASK_ERROR
     })
   }
+};
+
+export const handleDeleteTask = (cardId, taskId) => async dispatch => {
+
+  try {
+    const res = await axios.get('/card/' + cardId);
+    const newData = res.data;
+    const cardTasks = res.data.cardTasks;
+
+    const newTasks = cardTasks.filter((value, index, arr) => {
+      return value._id !== taskId
+    });
+    newData.cardTasks = newTasks;
+    await axios.post('/card/' + cardId, newData);
+    
+    dispatch({
+      type: DELETE_TASK,
+      payload: [ newData ]
+    });
+    dispatch(loadCards());
+    
+  } catch (error) {
+    dispatch({
+      type: TASK_ERROR
+    })
+  }
+}
+
+export const handleUpdateTask = (cardId, taskId, newTask) => async dispatch => {
+
+  try {
+    const res = await axios.get('/card/' + cardId);
+    const newData = res.data;
+    const cardTasks = res.data.cardTasks;
+
+    let index = cardTasks.findIndex(task => task._id === taskId);
+    cardTasks[index] = newTask;
+
+    await axios.post('/card/' + cardId, newData);
+    
+    dispatch({
+      type: UPDATE_TASK,
+      payload: [ newData ]
+    });
+    dispatch(loadCards());
+
+  } catch (error) {
+    dispatch({
+      type: TASK_ERROR
+    })
+  }  
 }

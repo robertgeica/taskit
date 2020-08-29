@@ -24,7 +24,7 @@ export const UPDATE_CARD = 'UPDATE_CARD';
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
-
+export const TASK_ERROR = 'TASK_ERROR';
 
 // posts
 // export const POSTS_LOADED = 'POSTS_LOADED';

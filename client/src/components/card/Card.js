@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import AddCardModal from './AddCardModal';
 import UpdateCardModal from './UpdateCardModal';
 import AddTaskModal from './AddTaskModal';
+import TaskModal from './TaskModal';
+
 
 // Redux
 import { connect } from 'react-redux';
@@ -35,10 +37,10 @@ const Card = ({ cards }) => {
     const handleOpenAddTask = () => setToggleAddTask(true);
     const handleCloseAddTask = () => setToggleAddTask(false);
 
-    const [taskModal, setTaskModal] = useState(undefined);
-    const handleOpenTaskModal = () => setTaskModal(true);
-    const handleCloseTaskModal = () => setTaskModal(false);
-
+    const [toggleTaskModal, setToggleTaskModal] = useState(undefined);
+    const [currentTask, setCurrentTask] = useState({});
+    const handleOpenTaskModal = () => setToggleTaskModal(true);
+    const handleCloseTaskModal = () => setToggleTaskModal(false);
 
   // console.log(cards);
 	return (
@@ -59,6 +61,14 @@ const Card = ({ cards }) => {
         toggleAddTask={toggleAddTask}
         handleCloseAddTask={handleCloseAddTask}
       />
+
+      <TaskModal
+        toggleTaskModal={toggleTaskModal}
+        handleCloseTaskModal={handleCloseTaskModal}
+        currentTask={currentTask}
+        cardId={cardId}
+      />
+
 
 
       <button onClick={handleOpenModal}>Add new card </button>
@@ -85,11 +95,15 @@ const Card = ({ cards }) => {
                 </div>
 
                 {card.cardTasks.map(task => (
-                  <div className="task">
+                  <div key={task._id} className="task">
                     <p 
                       className="task-title"
-                      onClick={handleOpenTaskModal}
-                    >
+                      onClick={() => {
+                        handleOpenTaskModal();
+                        setCurrentTask(task);
+                        setCardId(card._id);
+                        }
+                      }>
                       {task.taskTitle}
                     </p>
 
