@@ -9,6 +9,7 @@ import store from "../../store/store";
 
 import "./profile.scss";
 import image from "../../assets/profile-picture.jpg";
+import FileUpload from './FileUpload';
 
 // Actions
 import {
@@ -42,9 +43,11 @@ const Profile = ({ profile, user }) => {
       return (
         <div className="profile-container">
           <div className="profile-image">
-            <img src={image} alt="" />
+            <img src={`/${profile[0].image}`} alt={`${profile[0].image}`} />
           </div>
+          <FileUpload />
 
+          
           <div className="profile-details">
             <h1>{profile[0].name}</h1>
             <span>{user == null ? '' : user.email}</span>

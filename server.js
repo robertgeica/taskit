@@ -23,7 +23,7 @@ app.use('/register', require('./routes/api/register'));
 app.use('/profile', require('./routes/api/profile'));
 app.use('/card', require('./routes/api/card'));
 app.use('/company', require('./routes/api/company'));
-// app.use('/upload', require('./routes/api/upload'));
+app.use('/upload', require('./routes/api/upload'));
 
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
