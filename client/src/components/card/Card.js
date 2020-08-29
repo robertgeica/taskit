@@ -17,7 +17,6 @@ import { loadCards, handleDeleteCard, handleUpdateCard } from '../../actions/car
 
 import './card.scss';
 
-
 const Card = ({ cards }) => {
 
 	useEffect(() => {
@@ -44,7 +43,7 @@ const Card = ({ cards }) => {
 
   // console.log(cards);
 	return (
-    <div>
+    <div className="container card-container">
       <AddCardModal 
         toggle={toggle}
         handleCloseModal={handleCloseModal}
@@ -79,6 +78,7 @@ const Card = ({ cards }) => {
               <div className="card non-empty-card" key={card._id}>
                 <div className="card-content">
                   <h1 className="card-title">{card.card.cardTitle}</h1>
+                  {console.log(card)}
                   <button 
                     onClick={() => store.dispatch(handleDeleteCard(card._id))
                   }>

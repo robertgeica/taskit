@@ -56,7 +56,7 @@ const Company = ({ company }) => {
 	const handleCloseAddEE = () => setEmployeeModal(false);
 
 	return (
-		<div>
+		<div className="container">
 			<AddComanyModal toggle={toggle} handleCloseModal={handleCloseModal} />
 
 			<UpdateCompanyModal

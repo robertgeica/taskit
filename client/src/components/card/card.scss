@@ -57,3 +57,13 @@
 	margin: 1em;
 	padding: .5em 0;
 }
+
+.modal-header{
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+
+	.button{
+		margin: 5px;
+	}
+}

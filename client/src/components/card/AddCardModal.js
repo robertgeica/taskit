@@ -9,13 +9,20 @@ import { loadCards, handleAddCard } from "../../actions/card";
 
 const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
   const [card, setCard] = useState({
-
+	  
   });
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCard({ ...card, card:{[name]: value},cardTasks:[]});
+	
+	const { name, value } = e.target;
+    setCard({ ...card, [name]: value });
   };
+  const handleSubmit = () =>{
+	  const card2 = {card,taskList:[]};
+	  
+          handleAddCard(card2);
+          handleCloseModal();
+	  
+  }
 
   return (
     <Modal
@@ -23,20 +30,34 @@ const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
       onRequestClose={handleCloseModal}
       ariaHideApp={false}
       closeTimeoutMS={200}
-      className="addroadmap-modal"
+      className="modal"
     >
-      <form>
+		
+      <form className='form-container'>
+	  <div className="header">
+                <h3>Add Card</h3>
+        </div>
+		<div className="form-input">
+          <label htmlFor="phone">title:</label>
         <input type="text" name="cardTitle" placeholder="title" onChange={(e)=>handleChange(e)}/>
+		</div>
+		<div className="form-input">
+          <label htmlFor="phone">Description:</label>
         <input type="text" name="cardDescription" placeholder="description" onChange={(e)=>handleChange(e)}/>
+		</div>
+		<div className="form-input">
+          <label htmlFor="phone">deadline:</label>
         <input type="text" name="deadline" placeholder="deadline" onChange={(e)=>handleChange(e)}/>
+		</div>
+		<div className="form-input">
+          <label htmlFor="phone">Status:</label>
         <input type="text" name="status" placeholder="status" onChange={(e)=>handleChange(e)}/>
+		</div>
       </form>
       <button
         className="button"
         onClick={() => {
-			console.log(card);
-          handleAddCard(card);
-          handleCloseModal();
+			handleSubmit();
         }}
       >
         Add

@@ -41,7 +41,7 @@ const Profile = ({ profile, user }) => {
     if (profile !== null) {
       console.log(profile);
       return (
-        <div className="profile-container">
+        <div className="profile-container container">
           <div className="profile-image">
             <img src={`/${profile[0].image}`} alt={`${profile[0].image}`} />
           </div>
@@ -66,7 +66,7 @@ const Profile = ({ profile, user }) => {
             closeTimeoutMS={200}
             className="modal"
           >
-            <form className="form-container" onChange={handleChange}>
+            <form className="form-container " onChange={handleChange}>
               <div className="header">
                 <h3>Edit Profile</h3>
               </div>
