@@ -5,10 +5,10 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import store from '../../store/store';
 
-import { loadCards, handleAddCard } from '../../actions/card';
+import { loadCards, handleUpdateCard } from '../../actions/card';
 
-const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
-	const [ card, setCard ] = useState([]);
+const UpdateCardModal = ({ data, cardId, toggleUpdate, handleCloseUpdateModal }) => {
+	const [ newCard, setNewCard ] = useState([]);
 
 	const onChange = (e) => {
 		const cardTitle = e.target.parentNode.childNodes[0].value;
@@ -16,23 +16,21 @@ const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
 		const deadline = e.target.parentNode.childNodes[2].value;
 		const status = e.target.parentNode.childNodes[3].value;
 
-		const newCard = {
-			card: {
+		const nCard = {
 				cardTitle,
 				cardDescription,
 				deadline,
 				status
-			},
-			cardTasks: []
 		};
-		setCard(newCard);
+		setNewCard(nCard);
 	};
 
+  // console.log(data);
 
 	return (
 		<Modal
-			isOpen={!!toggle}
-			onRequestClose={handleCloseModal}
+			isOpen={!!toggleUpdate}
+			onRequestClose={handleCloseUpdateModal}
 			ariaHideApp={false}
 			closeTimeoutMS={200}
 			className="addroadmap-modal"
@@ -45,10 +43,10 @@ const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
 				<input type="text" name="status" placeholder="status" />
 			</form>
 			<button className="button" onClick={() => {
-        handleAddCard(card);
-        handleCloseModal();
+        store.dispatch(handleUpdateCard(cardId, newCard));
+        handleCloseUpdateModal();
       }}>
-				Add
+				Update
 			</button>
 		</Modal>
 	);
@@ -58,4 +56,4 @@ const mapStateToProps = (state) => ({
 	data: state.card.cards
 });
 
-export default connect(mapStateToProps, { handleAddCard })(AddCardModal);
+export default connect(mapStateToProps)(UpdateCardModal);

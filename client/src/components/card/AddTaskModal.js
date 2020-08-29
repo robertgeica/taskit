@@ -5,34 +5,31 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import store from '../../store/store';
 
-import { loadCards, handleAddCard } from '../../actions/card';
+import { handleAddTask } from '../../actions/card';
 
-const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
-	const [ card, setCard ] = useState([]);
+const AddCardModal = ({ cardId, toggleAddTask, handleCloseAddTask }) => {
+	const [ newTask, setNewTask ] = useState([]);
 
 	const onChange = (e) => {
-		const cardTitle = e.target.parentNode.childNodes[0].value;
-		const cardDescription = e.target.parentNode.childNodes[1].value;
+		const taskTitle = e.target.parentNode.childNodes[0].value;
+		const taskDescription = e.target.parentNode.childNodes[1].value;
 		const deadline = e.target.parentNode.childNodes[2].value;
 		const status = e.target.parentNode.childNodes[3].value;
 
-		const newCard = {
-			card: {
-				cardTitle,
-				cardDescription,
+		const newTask = {
+				taskTitle,
+				taskDescription,
 				deadline,
 				status
-			},
-			cardTasks: []
 		};
-		setCard(newCard);
+		setNewTask(newTask);
 	};
 
 
 	return (
 		<Modal
-			isOpen={!!toggle}
-			onRequestClose={handleCloseModal}
+			isOpen={!!toggleAddTask}
+			onRequestClose={handleCloseAddTask}
 			ariaHideApp={false}
 			closeTimeoutMS={200}
 			className="addroadmap-modal"
@@ -44,11 +41,12 @@ const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
 				<input type="text" name="deadline" placeholder="deadline" />
 				<input type="text" name="status" placeholder="status" />
 			</form>
+
 			<button className="button" onClick={() => {
-        handleAddCard(card);
-        handleCloseModal();
+        store.dispatch(handleAddTask(cardId, newTask));
+        handleCloseAddTask();
       }}>
-				Add
+				Add task
 			</button>
 		</Modal>
 	);
@@ -58,4 +56,4 @@ const mapStateToProps = (state) => ({
 	data: state.card.cards
 });
 
-export default connect(mapStateToProps, { handleAddCard })(AddCardModal);
+export default connect(mapStateToProps)(AddCardModal);

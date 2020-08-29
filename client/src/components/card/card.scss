@@ -1,0 +1,59 @@
+
+.board {
+	display: flex;
+	flex-direction: row;
+	margin-right: 10em;
+  width: 100%;
+  border: 1px solid red;
+}
+
+
+.card {
+	/* background-color: #FFFFFF; */
+	/* border: 1px solid #cfd2da; */
+  background-color: #636e72;
+	color: white;
+	border-radius: 3px;
+  display: flex;
+    			flex-direction: column; // row
+	margin: 1em;
+	height: 100%;
+	max-height: 80vh;
+	overflow: hidden;
+  overflow-y: auto;
+  border: 2px solid red;
+}
+
+.non-empty-card {
+	min-width: 20em;
+	min-height: 100%;
+}
+
+.card-content {
+	margin: 1em;
+}
+
+.card-title {
+	font-size: 1.3em;
+}
+
+.tasks {
+	padding: 0;
+	color: black;
+}
+
+.task {
+	border-radius: 5px;
+	padding: .5em 0;
+	/* background: #ecedf0; */
+    background-color: #23374d;
+	margin: .5em 0;
+	font-size: 1em;
+	color: white;
+}
+
+.task-title {
+	cursor: pointer;
+	margin: 1em;
+	padding: .5em 0;
+}
