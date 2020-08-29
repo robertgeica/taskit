@@ -24,6 +24,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 <Link className="nav-btn" onClick={logout} to="/login">Logout</Link>
                 <Link className="nav-btn" to="/profile">Profile</Link>
                 <Link className="nav-btn" to="/cards">Cards</Link>
+                <Link className="nav-btn" to="/company">Company</Link>
 
               </Fragment>
             ) : 

@@ -47,7 +47,7 @@ const Profile = ({ profile, user }) => {
 
           <div className="profile-details">
             <h1>{profile[0].name}</h1>
-            <span>email@email.com</span>
+            <span>{user == null ? '' : user.email}</span>
             <div className="secondary-details">
               <p>adress:{profile[0].adress} </p>
               <p>{profile[0].phone} </p>
@@ -129,7 +129,7 @@ const Profile = ({ profile, user }) => {
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,
-  user: state.auth.user,
+  user: state.auth.user
 });
 
 export default connect(mapStateToProps)(Profile);

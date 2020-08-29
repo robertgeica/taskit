@@ -7,7 +7,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Profile from './components/auth/Profile';
 import Card from './components/card/Card';
-
+import Company from './components/company/Company';
 
 import './app.scss';
 
@@ -42,6 +42,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/cards" component={Card} />
+          <Route exact path="/company" component={Company} />
         </Switch>
       </Router>
     </Provider>
