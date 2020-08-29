@@ -7,10 +7,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import store from '../../store/store';
 
+import './profile.scss'
+import image from '../../assets/profile-picture.jpg'
+
 // Actions
 import { loadProfile, handleUpdateProfile, handleCreateProfile } from '../../actions/profile';
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, user }) => {
 	useEffect(() => {
 		store.dispatch(loadProfile());
 	}, []);
@@ -26,14 +29,25 @@ const Profile = ({ profile }) => {
 		if (profile !== null) {
       console.log(profile);
 			return (
-				<div>
-					<p>Name: {profile[0].name}</p>
-					<p>Image: {profile[0].image} </p>
-					<p>Adress: {profile[0].adress} </p>
-					<p>Phone: {profile[0].phone} </p>
-					<p>Id: {profile[0]._id}</p>
-					<button onClick={handleOpenModal}>Update info</button>
+				<div className="profile-container">
+					<div className="profile-image">
 
+						<img src={image} alt=""/>
+						
+					</div>
+
+					<div className="profile-details">
+
+					<h1>{profile[0].name}</h1>
+					<span>email@email.com</span>
+					<div className="secondary-details">
+						
+					<p>adress:{profile[0].adress} </p>
+					<p>{profile[0].phone} </p>
+					</div>
+					<button className="button"onClick={handleOpenModal}>Update info</button>
+
+					</div>
 					<Modal
 						isOpen={!!toggle}
 						onRequestClose={handleCloseModal}
@@ -88,7 +102,8 @@ const Profile = ({ profile }) => {
 };
 
 const mapStateToProps = (state) => ({
-	profile: state.profile.profile
+	profile: state.profile.profile,
+	user: state.auth.user
 });
 
 export default connect(mapStateToProps)(Profile);
