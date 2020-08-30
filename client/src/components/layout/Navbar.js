@@ -19,6 +19,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
        
     
               <ul className={`nav-links ${open ? 'open' : null}`}>
+                <div className="create-card">
+                  <p>Create <br/> new card</p>
+                  <button className='create-card-button'>+</button>
+                </div>
                 <Link className="nav-btn" onClick={logout} to="/login">Logout</Link>
                 <Link className="nav-btn" to="/profile"onClick={() => setOpen(!open)}>Profile</Link>
                 <Link className="nav-btn" to="/cards"onClick={() => setOpen(!open)}>Cards</Link>
@@ -37,9 +41,15 @@ const guestLinks = (
 
   return (
 		<nav className="navbar">
-			<Link to="/" className="logo" />
 			{ /*console.log(window.innerWidth)*/ }
-			<HamburgerMenu
+      <h3>Task.it</h3>
+		
+
+{!loading && <Fragment>{isAuthenticated ? userLinks : guestLinks}</Fragment>}
+<Link to="/" className="logo" />
+
+			{ /*console.log(window.innerWidth)*/ }
+      <HamburgerMenu
 				isOpen={open}
 				menuClicked={() => setOpen(!open)}
 				width={30}
@@ -51,8 +61,6 @@ const guestLinks = (
 				borderRadius={25}
 				animationDuration={0.5}
 			/>
-
-{!loading && <Fragment>{isAuthenticated ? userLinks : guestLinks}</Fragment>}
 		</nav>
 	);
 };
