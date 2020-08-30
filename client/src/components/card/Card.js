@@ -6,6 +6,8 @@ import UpdateCardModal from './UpdateCardModal';
 import AddTaskModal from './AddTaskModal';
 import TaskModal from './TaskModal';
 
+import TaskCard from './task-card/Task-card'
+
 
 // Redux
 import { connect } from 'react-redux';
@@ -72,7 +74,7 @@ const Card = ({ cards }) => {
 
 
 
-      <button onClick={handleOpenModal}>Add new card </button>
+      <button onClick={handleOpenModal} className="add-button">Add new card </button>
       <div>
         {cards !== null && (
           <div className="board">
@@ -105,28 +107,26 @@ const Card = ({ cards }) => {
                 </div>
                 <p className="card-description">Descripiption: <br/><br/>{card.card.cardDescription}</p>
                 {card.cardTasks.map(task => (
-                  <div key={task._id} className="task">
-                    <p 
-                      className="task-title"
-                      onClick={() => {
-                        handleOpenTaskModal();
-                        setCurrentTask(task);
-                        setCardId(card._id);
-                        }
-                      }>
-                      {task.taskTitle}
-                    </p>
-
-                  </div>
+                    <TaskCard
+                   handleOpenTaskModal={()=> handleOpenTaskModal()}
+                   setCurrentTask={()=>   setCurrentTask(task)}
+                   task={task}
+                   key={task._id}
+                   card_id={card._id}
+                   setCardId={()=> setCardId(card._id)}
+                  deadline={task.deadline}
+                    title=  {task.taskTitle}
+                    description={task.taskDescription}/>
+                        
                 ))}
 
-                <div>
-                  <button
+                <div className="add-container">
+                  <button className="add-button"
                     onClick={() => {
                       setCardId(card._id);
                       handleOpenAddTask();
                     }}>
-                    add task
+                    + &nbsp; 	&nbsp;add task
                   </button>
                 </div>
               </div>

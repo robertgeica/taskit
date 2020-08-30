@@ -1,0 +1,28 @@
+.task-card{
+    max-width: 290px;
+    margin: 0 auto;
+    min-width: 250px;
+    position: relative;
+    text-align: left;
+}
+.media{
+    height:140px;
+}
+.MuiSvgIcon-root{
+    height:0.8em!important;
+}
+.aditional{
+    font-size: 10px!important;
+}
+
+.date{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background: black;
+    font-size: 20px!important;
+    text-align: center;
+    padding: 10px;
+    line-height: 80% !important;
+}
