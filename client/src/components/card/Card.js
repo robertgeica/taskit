@@ -21,7 +21,9 @@ const Card = ({ cards }) => {
 
 	useEffect(() => {
     store.dispatch(loadCards());
-	}, []);
+  }, []);
+  
+    const [open, setOpen]= useState(false);
 
     const [toggle, setToggle] = useState(undefined);
     const handleOpenModal = () => setToggle(true);
@@ -79,21 +81,29 @@ const Card = ({ cards }) => {
                 <div className="card-content">
                   <h1 className="card-title">{card.card.cardTitle}</h1>
                   {console.log(card)}
-                  <button 
-                    onClick={() => store.dispatch(handleDeleteCard(card._id))
-                  }>
-                    delete
-                  </button>
 
-                  <button
-                    onClick={() => {
-                      setCardId(card._id);
-                      handleOpenUpdateModal();
-                    }}>
-                    edit
-                  </button>
+                  <p className="dots" onClick={()=>setOpen(!open)} >...</p>
+
+                  <div className={`dots-div ${open? 'open':'d-none'}`}>
+                    <button 
+                      onClick={() => store.dispatch(handleDeleteCard(card._id))
+                    }>
+                      delete
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setCardId(card._id);
+                        handleOpenUpdateModal();
+                      }}>
+                      edit
+                    </button>
+                  </div>
+
+                  
+                  
                 </div>
-
+                <p className="card-description">Descripiption: <br/><br/>{card.card.cardDescription}</p>
                 {card.cardTasks.map(task => (
                   <div key={task._id} className="task">
                     <p 
