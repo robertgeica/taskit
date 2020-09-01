@@ -4,7 +4,6 @@
 	flex-direction: row;
 	flex-wrap: wrap;
   max-width: 100%;
-  border: 1px solid red;
 }
 
 
@@ -21,6 +20,12 @@
 	max-height: 80vh;
 	overflow: hidden;
   overflow-y: auto;
+  max-width: 100%;
+
+  @media(max-width: 600px){
+	  margin: 0 auto;
+	  
+  }
 }
 
 
@@ -31,14 +36,7 @@
 .add-container{
 	margin:20px auto;
 }
-.add-button{
-	background:#64A15E;
-	color:white;
-	border: 0;
-	padding: 5px 20px;
-	border-radius: 10px;
-	margin: 0 auto;
-}
+
 
 .card-content {
 	display: flex;
@@ -128,3 +126,27 @@
 		margin: 5px;
 	}
 }
+
+.card-container-header{
+	display: flex;
+	justify-content: space-between;
+
+	width: 100%;
+	align-items: center;
+
+	.card-header-title{
+		font-size: 40px;
+		margin: 0 30px ;
+	}
+
+	.add-button{
+		margin: 30px
+	}
+}
+.add-button{
+	background:#64A15E;
+	color:white;
+	border: 0;
+	padding: 5px 20px;
+	border-radius: 10px;
+}	

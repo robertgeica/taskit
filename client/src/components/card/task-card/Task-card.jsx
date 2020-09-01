@@ -20,14 +20,19 @@ const TaskCard = ({ title, description, task_id, status, deadline,handleOpenTask
 	>
     <Card className="task-card" key={task._id}>
       <CardContent>
-        <Typography className="date" component="p">
+        <div className="task-header">
+        <Typography className="status" component="p">
         	{status}
         </Typography>
-        <Typography className="date" component="p">
-          Deadline: <br /> {deadline}
+        <Typography className="deadline" component="p">
+          {deadline}
         </Typography>
+        </div>
         <Typography gutterBottom variant="h5" component="h2">
           {title}
+        </Typography>
+        <Typography gutterBottom className="date" component="p">
+          {task.createdAt}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {description}

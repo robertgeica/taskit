@@ -9,13 +9,12 @@ import { loadCards, handleUpdateCard } from "../../actions/card";
 import card from "../../reducers/card";
 
 const UpdateCardModal = ({
-  card,
   cardId,
   toggleUpdate,
   handleCloseUpdateModal,
 }) => {
   const [newCard, setNewCard] = useState({
-    cardTitle: "",
+    cardTitle: '',
     cardDescription: "",
     deadline: "",
     status: "",
@@ -26,7 +25,17 @@ const UpdateCardModal = ({
     setNewCard({ ...newCard, [name]: value });
   };
 
-console.log(card)
+  useEffect(()=>{
+
+    if(cardId){
+    setNewCard({
+          cardTitle: cardId.card.cardTitle,
+          cardDescription: cardId.card.cardDescription,
+          deadline: cardId.card.deadline,
+          status: cardId.card.status,
+        })}
+  },[cardId])
+
 
   return (
     <Modal
@@ -48,6 +57,7 @@ console.log(card)
             name="cardTitle"
 			placeholder="title"
             onChange={(e) => handleChange(e)}
+            defaultValue={newCard.cardTitle}
           />
 		  
         </div>
@@ -58,6 +68,7 @@ console.log(card)
             name="cardDescription"
 			placeholder="description"
             onChange={(e) => handleChange(e)}
+            defaultValue={newCard.cardDescription}
           />
         </div>
         <div className="form-input">
@@ -67,6 +78,7 @@ console.log(card)
             name="deadline"
 			placeholder="deadline"
             onChange={(e) => handleChange(e)}
+            defaultValue={newCard.deadline}
           />
         </div>
         <div className="form-input">
@@ -76,14 +88,17 @@ console.log(card)
             name="status"
 			placeholder="status"	
             onChange={(e) => handleChange(e)}
+            defaultValue={newCard.status}
           />
         </div>
 		<button
         className="button"
         onClick={(e) => {
-			e.preventDefault();
-          store.dispatch(handleUpdateCard(cardId, newCard));
+      e.preventDefault();
+      if(cardId._id){
+          store.dispatch(handleUpdateCard(cardId._id, newCard));
           handleCloseUpdateModal();
+        console.log(cardId._id)}
         }}
       >
         Update

@@ -71,7 +71,7 @@ const AddTaskModal = ({ cardId, toggleAddTask, handleCloseAddTask }) => {
         className="button"
         onClick={() => {
           console.log(newTask);
-          store.dispatch(handleAddTask(cardId, newTask));
+          store.dispatch(handleAddTask(cardId._id, newTask));
           handleCloseAddTask();
         }}
       >

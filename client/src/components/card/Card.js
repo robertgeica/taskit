@@ -5,6 +5,7 @@ import AddCardModal from './AddCardModal';
 import UpdateCardModal from './UpdateCardModal';
 import AddTaskModal from './AddTaskModal';
 import TaskModal from './TaskModal';
+import CardHeaderContent from './card-header/card-header'
 
 import TaskCard from './task-card/Task-card'
 
@@ -18,21 +19,20 @@ import store from '../../store/store';
 import { loadCards, handleDeleteCard, handleUpdateCard } from '../../actions/card';
 
 import './card.scss';
+import { CardHeader } from '@material-ui/core';
 
 const Card = ({ cards }) => {
 
 	useEffect(() => {
     store.dispatch(loadCards());
   }, []);
-  
-    const [open, setOpen]= useState(false);
 
     const [toggle, setToggle] = useState(undefined);
     const handleOpenModal = () => setToggle(true);
     const handleCloseModal = () => setToggle(false);
 
     const [toggleUpdate, setToggleUpdate] = useState(undefined);
-    const [cardId, setCardId] = useState('');
+    const [cardId, setCardId] = useState();
     const handleOpenUpdateModal = () => setToggleUpdate(true);
     const handleCloseUpdateModal = () => setToggleUpdate(false);
 
@@ -53,7 +53,8 @@ const Card = ({ cards }) => {
         handleCloseModal={handleCloseModal}
       />
 
-      <UpdateCardModal 
+      <UpdateCardModal
+      
         cardId={cardId}
         toggleUpdate={toggleUpdate}
         handleCloseUpdateModal={handleCloseUpdateModal}
@@ -73,39 +74,23 @@ const Card = ({ cards }) => {
       />
 
 
-
-      <button onClick={handleOpenModal} className="add-button">Add new card </button>
+      <div className="card-container-header">
+        <h3 className="card-header-title">Cards</h3>
+        <button onClick={handleOpenModal} className="add-button">Add new card </button>
+      </div>
+      
       <div>
         {cards !== null && (
           <div className="board">
             {cards.map(card => (
               <div className="card non-empty-card" key={card._id}>
-                <div className="card-content">
-                  <h1 className="card-title">{card.card.cardTitle}</h1>
-                  {console.log(card)}
-
-                  <p className="dots" onClick={()=>setOpen(!open)} >...</p>
-
-                  <div className={`dots-div ${open? 'open':'d-none'}`}>
-                    <button 
-                      onClick={() => store.dispatch(handleDeleteCard(card._id))
-                    }>
-                      delete
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        setCardId(card._id);
-                        handleOpenUpdateModal();
-                      }}>
-                      edit
-                    </button>
-                  </div>
-
-                  
-                  
-                </div>
-                <p className="card-description">Descripiption: <br/><br/>{card.card.cardDescription}</p>
+                <CardHeaderContent
+                  deleteCard={() =>store.dispatch(handleDeleteCard(card._id))}
+                  setCard={()=>setCardId(card)}
+                  handleUpdate={()=>handleOpenUpdateModal(card={card})}
+                  card={card}
+                />
+                <p className="card-description">{card.card.cardDescription}</p>
                 {card.cardTasks.map(task => (
                     <TaskCard
                    handleOpenTaskModal={()=> handleOpenTaskModal()}
@@ -113,7 +98,8 @@ const Card = ({ cards }) => {
                    task={task}
                    key={task._id}
                    card_id={card._id}
-                   setCardId={()=> setCardId(card._id)}
+                   setCardId={()=> setCardId(card)}
+                   status={task.status}
                   deadline={task.deadline}
                     title=  {task.taskTitle}
                     description={task.taskDescription}/>
@@ -123,7 +109,7 @@ const Card = ({ cards }) => {
                 <div className="add-container">
                   <button className="add-button"
                     onClick={() => {
-                      setCardId(card._id);
+                      setCardId(card);
                       handleOpenAddTask();
                     }}>
                     + &nbsp; 	&nbsp;add task
