@@ -24,7 +24,9 @@ const Profile = ({ profile, user }) => {
   }, []);
 
   const [newProfile,setNewProfile]=useState({
-	  
+    name:'',
+    adress:'',
+    phone:''
   })
 
 	const handleChange = (e) =>{

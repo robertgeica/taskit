@@ -8,7 +8,7 @@ import store from "../../store/store";
 
 import { handleDeleteTask } from "../../actions/card";
 
-import './card.scss'
+import "./card.scss";
 
 const TaskModal = ({
   toggleTaskModal,
@@ -35,12 +35,12 @@ const TaskModal = ({
         handleCloseUpdateTask={handleCloseUpdateTask}
         handleCloseTaskModal={handleCloseTaskModal}
         cardId={cardId}
-        taskId={currentTask._id}
+        task={currentTask}
       />
 
       <div className="modal-header">
         <button
-        className='button task-button'
+          className="button task-button"
           onClick={() => {
             handleOpenUpdateTask();
           }}
@@ -49,9 +49,9 @@ const TaskModal = ({
         </button>
 
         <button
-        className='button task-button'
+          className="button task-button"
           onClick={() => {
-            store.dispatch(handleDeleteTask(cardId, currentTask._id));
+            store.dispatch(handleDeleteTask(cardId._id, currentTask._id));
             handleCloseTaskModal();
           }}
         >
@@ -60,11 +60,11 @@ const TaskModal = ({
       </div>
 
       <div className="modal-body">
-        <p>createAt: {currentTask.createAt}</p>
-        <p>deadline: {currentTask.deadline}</p>
-        <p>status: {currentTask.status}</p>
-        <p>taskDescription: {currentTask.taskDescription}</p>
         <p>task title: {currentTask.taskTitle}</p>
+        <p>taskDescription: {currentTask.taskDescription}</p>
+        <p>status: {currentTask.status}</p>
+        <p>deadline: {currentTask.deadline}</p>
+        <p>createAt: {currentTask.createdAt}</p>
       </div>
     </Modal>
   );

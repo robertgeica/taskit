@@ -7,7 +7,7 @@ import store from "../../store/store";
 
 import { loadCards, handleAddCard } from "../../actions/card";
 
-const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
+const AddCardModal = ({  toggle, handleCloseModal, handleAddCard }) => {
   const [card, setCard] = useState({
 	  
   });
@@ -21,6 +21,7 @@ const AddCardModal = ({ data, toggle, handleCloseModal, handleAddCard }) => {
 	  
           handleAddCard(card2);
           handleCloseModal();
+          setCard({})
 	  
   }
 

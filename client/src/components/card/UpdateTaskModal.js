@@ -9,7 +9,7 @@ import { handleUpdateTask } from "../../actions/card";
 
 const UpdateCardModal = ({
   cardId,
-  taskId,
+  task,
   toggleUpdateTask,
   handleCloseUpdateTask,
   handleCloseTaskModal,
@@ -26,7 +26,17 @@ const UpdateCardModal = ({
     setNewTask({ ...newTask, [name]: value });
   };
 
-  // console.log(data);
+
+  useEffect(()=>{
+
+    if(task){
+    setNewTask({
+      taskTitle: task.taskTitle,
+      taskDescription: task.taskDescription,
+      deadline: task.deadline,
+      status: task.status,
+        })}
+  },[])
 
   return (
     <Modal
@@ -48,6 +58,7 @@ const UpdateCardModal = ({
             name="taskTitle"
             placeholder="title"
             onChange={(e) => handleChange(e)}
+            defaultValue={newTask.taskTitle}
           />
         </div>
         <div className="form-input">
@@ -57,15 +68,7 @@ const UpdateCardModal = ({
             name="taskDescription"
             placeholder="description"
             onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="form-input">
-          <label htmlFor="deadline">deadline:</label>
-          <input
-            type="text"
-            name="deadline"
-            placeholder="deadline"
-            onChange={(e) => handleChange(e)}
+            defaultValue={newTask.taskDescription}
           />
         </div>
         <div className="form-input">
@@ -75,13 +78,25 @@ const UpdateCardModal = ({
             name="status"
             placeholder="status"
             onChange={(e) => handleChange(e)}
+            defaultValue={newTask.status}
           />
         </div>
+        <div className="form-input">
+          <label htmlFor="deadline">deadline:</label>
+          <input
+            type="text"
+            name="deadline"
+            placeholder="deadline"
+            onChange={(e) => handleChange(e)}
+            defaultValue={newTask.deadline}
+          />
+        </div>
+        
       </form>
       <button
         className="button"
         onClick={() => {
-          store.dispatch(handleUpdateTask(cardId, taskId, newTask));
+          store.dispatch(handleUpdateTask(cardId._id, task._id, newTask));
           handleCloseUpdateTask();
           handleCloseTaskModal();
         }}
