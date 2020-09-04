@@ -8,12 +8,17 @@ import store from "../../store/store";
 import { handleAddTask } from "../../actions/card";
 
 const AddTaskModal = ({ cardId, toggleAddTask, handleCloseAddTask }) => {
-  const [newTask, setNewTask] = useState({});
+  const [newTask, setNewTask] = useState({
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewTask({ ...newTask, [name]: value });
   };
+
+  useEffect(()=>{
+    if(cardId!==undefined) setNewTask({cardId:cardId._id})
+  },[cardId])
 
   return (
     <Modal
@@ -80,6 +85,7 @@ const AddTaskModal = ({ cardId, toggleAddTask, handleCloseAddTask }) => {
         className="button"
         onClick={() => {
           console.log(newTask);
+          
           store.dispatch(handleAddTask(cardId._id, newTask));
           handleCloseAddTask();
         }}

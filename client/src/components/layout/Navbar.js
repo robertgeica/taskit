@@ -1,7 +1,8 @@
 import React, { Fragment,useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , Redirect} from "react-router-dom";
 
 import HamburgerMenu from 'react-hamburger-menu';
+import AddCardModal from '../card/AddCardModal'
 
 // Redux
 import { connect } from "react-redux";
@@ -12,6 +13,11 @@ import { logout } from "../../actions/auth";
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const [ open, setOpen ] = useState(false);
+  const [ toggle, setToggle ] = useState(undefined);
+	const handleOpenModal = () => setToggle(true);
+  const handleCloseModal = () => setToggle(false);
+  
+  
 
 	if(window.initialWidth<700)setOpen(true)
 
@@ -19,9 +25,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
        
     
               <ul className={`nav-links ${open ? 'open' : null}`}>
-                <div className="create-card">
+                <div className="create-card" onClick={handleOpenModal}>
                   <p>Create <br/> new card</p>
-                  <button className='create-card-button'>+</button>
+                  <Link to="/cards" className='create-card-button'>+</Link>
                 </div>
                 <Link className="nav-btn" onClick={logout} to="/login">Logout</Link>
                 <Link className="nav-btn" to="/profile"onClick={() => setOpen(!open)}>Profile</Link>
@@ -43,13 +49,15 @@ const guestLinks = (
 		<nav className="navbar">
 			{ /*console.log(window.innerWidth)*/ }
       <h3>Task.it</h3>
-		
+		<AddCardModal toggle={toggle} handleCloseModal={handleCloseModal} />
 
 {!loading && <Fragment>{isAuthenticated ? userLinks : guestLinks}</Fragment>}
+
 <Link to="/" className="logo" />
 
 			{ /*console.log(window.innerWidth)*/ }
       <HamburgerMenu
+
 				isOpen={open}
 				menuClicked={() => setOpen(!open)}
 				width={30}

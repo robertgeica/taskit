@@ -46,14 +46,6 @@ const AddCardModal = ({  toggle, handleCloseModal, handleAddCard }) => {
           <label htmlFor="phone">Description:</label>
         <input type="text" name="cardDescription" placeholder="description" onChange={(e)=>handleChange(e)}/>
 		</div>
-		<div className="form-input">
-          <label htmlFor="phone">deadline:</label>
-        <input type="text" name="deadline" placeholder="deadline" onChange={(e)=>handleChange(e)}/>
-		</div>
-		<div className="form-input">
-          <label htmlFor="phone">Status:</label>
-        <input type="text" name="status" placeholder="status" onChange={(e)=>handleChange(e)}/>
-		</div>
       </form>
       <button
         className="button"

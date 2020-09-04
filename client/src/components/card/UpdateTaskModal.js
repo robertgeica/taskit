@@ -8,7 +8,6 @@ import store from "../../store/store";
 import { handleUpdateTask } from "../../actions/card";
 
 const UpdateCardModal = ({
-  cardId,
   task,
   toggleUpdateTask,
   handleCloseUpdateTask,
@@ -35,6 +34,8 @@ const UpdateCardModal = ({
       taskDescription: task.taskDescription,
       deadline: task.deadline,
       status: task.status,
+      allocatedTo: task.allocatedTo,
+      cardId:task.cardId
         })}
   },[])
 
@@ -91,12 +92,22 @@ const UpdateCardModal = ({
             defaultValue={newTask.deadline}
           />
         </div>
+        <div className="form-input">
+          <label htmlFor="deadline">allocatedTo:</label>
+          <input
+            type="text"
+            name="allocatedTo"
+            placeholder="allocatedTo"
+            onChange={(e) => handleChange(e)}
+            defaultValue={newTask.allocatedTo}
+          />
+        </div>
         
       </form>
       <button
         className="button"
         onClick={() => {
-          store.dispatch(handleUpdateTask(cardId._id, task._id, newTask));
+          store.dispatch(handleUpdateTask(task.cardId, task._id, newTask));
           handleCloseUpdateTask();
           handleCloseTaskModal();
         }}

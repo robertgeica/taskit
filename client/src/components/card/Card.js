@@ -19,11 +19,12 @@ import { loadCards, handleDeleteCard, handleUpdateCard, loadAllocatedCards } fro
 
 import './card.scss';
 import { CardHeader } from '@material-ui/core';
+import Profile from '../auth/Profile';
 
-const Card = ({ cards, allocatedCards }) => {
+const Card = ({ cards, allocatedCards, profile }) => {
 	useEffect(() => {
 		store.dispatch(loadCards());
-		store.dispatch(loadAllocatedCards());
+    store.dispatch(loadAllocatedCards());
 	}, []);
 
 	console.log(allocatedCards);
@@ -45,7 +46,6 @@ const Card = ({ cards, allocatedCards }) => {
 	const handleOpenTaskModal = () => setToggleTaskModal(true);
 	const handleCloseTaskModal = () => setToggleTaskModal(false);
 
-	// console.log(cards);
 	return (
 		<div className="container card-container">
 			<AddCardModal toggle={toggle} handleCloseModal={handleCloseModal} />
@@ -99,6 +99,7 @@ const Card = ({ cards, allocatedCards }) => {
 										allocatedTo={task.allocatedTo}
 									/>
 								))}
+                
 
 								<div className="add-container">
 									<button
@@ -113,6 +114,22 @@ const Card = ({ cards, allocatedCards }) => {
 								</div>
 							</div>
 						))}
+            {allocatedCards==null?"":
+            allocatedCards.map((task)=>(
+              <TaskCard
+										handleOpenTaskModal={() => handleOpenTaskModal()}
+										setCurrentTask={() => setCurrentTask(task)}
+										task={task}
+										key={task._id}
+										status={task.status}
+										deadline={task.deadline}
+                    title={task.taskTitle}
+                    description={task.taskDescription}
+                    allocatedTo={task.allocatedTo}
+                    card_id={task.cardId}
+									/>
+            ))}
+            
 					</div>
 				)}
 			</div>

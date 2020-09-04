@@ -37,7 +37,7 @@ const TaskModal = ({
         cardId={cardId}
         task={currentTask}
       />
-
+    
       <div className="modal-header">
         <button
           className="button task-button"
@@ -51,7 +51,7 @@ const TaskModal = ({
         <button
           className="button task-button"
           onClick={() => {
-            store.dispatch(handleDeleteTask(cardId._id, currentTask._id));
+            store.dispatch(handleDeleteTask(currentTask.cardId, currentTask._id));
             handleCloseTaskModal();
           }}
         >

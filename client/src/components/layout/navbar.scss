@@ -43,7 +43,6 @@ nav {
 		margin-left: 4%;
 		display: none;
 		color: black;
-		background-image: url(../../assets/profile-picture.jpg);
 		background-repeat: no-repeat;
 		align-self: center;
 		background-size: contain;
@@ -69,10 +68,14 @@ nav {
 		  border-radius: 100%;
 		  margin-left: 10px;
 		  background-color: #64A15E;
-		  font-size: 30px;
+		  text-align: center;
+		  font-size: 36px;
 		  -webkit-box-shadow: -1px 0px 28px 4px rgba(100,161,94,0.58);
 -moz-box-shadow: -1px 0px 28px 4px rgba(100,161,94,0.58);
 box-shadow: -1px 0px 28px 4px rgba(100,161,94,0.58);
+			a{
+				margin-top: 2px;
+			}
 	  }
 	  @media (max-width: 1100px) {
 		flex-direction: column;
