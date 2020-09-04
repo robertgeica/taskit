@@ -4,6 +4,7 @@ import { CARDS_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK
 export const loadCards = () => async (dispatch) => {
 	const res = await axios.get('/card');
   
+  console.log(res.data);
 	try {
 		dispatch({
 			type: CARDS_LOADED,

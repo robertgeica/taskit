@@ -57,11 +57,20 @@ const AddTaskModal = ({ cardId, toggleAddTask, handleCloseAddTask }) => {
           />
         </div>
         <div className="form-input">
-          <label htmlFor="phone">status:</label>
+          <label htmlFor="status">status:</label>
           <input
             type="text"
             name="status"
             placeholder="status"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <div className="form-input">
+          <label htmlFor="allocatedTo">allocated to:</label>
+          <input
+            type="text"
+            name="allocatedTo"
+            placeholder="allocatedTo"
             onChange={(e) => handleChange(e)}
           />
         </div>

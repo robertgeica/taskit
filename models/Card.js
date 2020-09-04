@@ -6,16 +6,14 @@ const CardSchema = new Schema({
 		type: Object,
 		required: true
 	},
-	card: 
-		{
-			cardTitle: { type: String },
-			cardDescription: { type: String },
-			createdAt: { type: Date, default: Date.now },
-			deadline: { type: String },
-			status: { type: String },
-			allocatedTo: { type: String }
-		}
-	,
+	card: {
+		cardTitle: { type: String },
+		cardDescription: { type: String },
+		createdAt: { type: Date, default: Date.now },
+		deadline: { type: String },
+		status: { type: String },
+		allocatedTo: { type: String }
+	},
 	cardTasks: [
 		{
 			taskTitle: { type: String },
@@ -23,7 +21,7 @@ const CardSchema = new Schema({
 			createdAt: { type: Date, default: Date.now },
 			deadline: { type: String },
 			status: { type: String },
-			allocatedTo: { type: String }
+			allocatedTo: { type: Object }
 		}
 	]
 });
