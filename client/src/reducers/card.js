@@ -1,7 +1,8 @@
-import { CARDS_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR } from '../actions/types';
+import { CARDS_LOADED, ALLOCATED_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR } from '../actions/types';
 
 const initialState = {
-	cards: null
+	cards: null,
+	allocatedCards: null
 };
 
 export default function(state = initialState, action) {
@@ -18,7 +19,10 @@ export default function(state = initialState, action) {
 		case DELETE_TASK:
 		case UPDATE_TASK:
       return { ...state, payload };
-      
+    
+		case ALLOCATED_LOADED:
+			return { ...state, allocatedCards: payload };
+
 		case CARDS_ERROR:
 		case TASK_ERROR:
 			return { ...state, payload };

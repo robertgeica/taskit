@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let Card = require('../../models/Card');
+let Company = require('../../models/Company');
 const User = require('../../models/User');
 const auth = require('../../middleware/auth');
 
@@ -15,6 +16,34 @@ router.get('/', auth, async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).send('Server Error');
+	}
+});
+
+router.get('/alloc', auth, async (req, res) => {
+	try {
+		
+		// console.log(req.user);
+		const user = await User.findById(req.user.id).select('-password');
+
+		let myTasks = [];
+		let cards = await Card.find({}, (err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				result.map((card) => {
+					card.cardTasks.map((task) => {
+						if (task.allocatedTo == user.email) {
+							myTasks.push(task);
+						}
+					});
+				});
+			};
+		});
+		res.send(myTasks);
+		
+		// console.log('card', cards);
+	} catch (error) {
+		console.log(error);
 	}
 });
 
@@ -95,6 +124,5 @@ router.post('/:id', auth, async (req, res) => {
 		res.status(400).send('Error editing the week.');
 	}
 });
-
 
 module.exports = router;

@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { CARDS_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR } from './types';
+import { CARDS_LOADED, ALLOCATED_LOADED, CARDS_ERROR, ADD_CARD, DELETE_CARD, UPDATE_CARD, ADD_TASK, DELETE_TASK, UPDATE_TASK, TASK_ERROR } from './types';
 
 export const loadCards = () => async (dispatch) => {
 	const res = await axios.get('/card');
   
-  console.log(res.data);
 	try {
 		dispatch({
 			type: CARDS_LOADED,
@@ -16,6 +15,21 @@ export const loadCards = () => async (dispatch) => {
 		});
 	}
 };
+
+export const loadAllocatedCards = () => async dispatch => {
+	const res = await axios.get('/card/alloc');
+
+  try {
+    dispatch({
+      type: ALLOCATED_LOADED,
+      payload: res.data
+    })
+  } catch (error) {
+		dispatch({
+			type: CARDS_ERROR
+		});
+  }
+}
 
 export const handleAddCard = (card) => async dispatch => {
   try {

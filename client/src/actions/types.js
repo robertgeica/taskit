@@ -20,6 +20,8 @@ export const CARDS_ERROR = 'CARDS_ERROR';
 export const ADD_CARD = 'ADD_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
 export const UPDATE_CARD = 'UPDATE_CARD';
+export const ALLOCATED_LOADED = 'ALLOCATED_LOADED';
+
 
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
