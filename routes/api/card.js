@@ -33,7 +33,11 @@ router.get('/alloc', auth, async (req, res) => {
 				result.map((card) => {
 					card.cardTasks.map((task) => {
 						if (task.allocatedTo == user.email) {
-							myTasks.push(task);
+							const task2 = {
+								task,
+								alocat:true
+							}
+							myTasks.push(task2);
 						}
 					});
 				});

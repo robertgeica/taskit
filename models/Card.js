@@ -21,7 +21,8 @@ const CardSchema = new Schema({
 			createdAt: { type: Date, default: Date.now },
 			deadline: { type: String },
 			status: { type: String },
-			allocatedTo: { type: Object }
+			allocatedTo: { type: Object },
+			cardId: { type: String }
 		}
 	]
 });

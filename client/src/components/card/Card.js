@@ -42,10 +42,13 @@ const Card = ({ cards, allocatedCards, profile }) => {
 	const handleCloseAddTask = () => setToggleAddTask(false);
 
 	const [ toggleTaskModal, setToggleTaskModal ] = useState(undefined);
-	const [ currentTask, setCurrentTask ] = useState({});
+	const [ currentTask, setCurrentTask ] = useState({
+    task:{},
+    isAllocated:false
+  });
 	const handleOpenTaskModal = () => setToggleTaskModal(true);
 	const handleCloseTaskModal = () => setToggleTaskModal(false);
-
+console.log(currentTask)
 	return (
 		<div className="container card-container">
 			<AddCardModal toggle={toggle} handleCloseModal={handleCloseModal} />
@@ -61,8 +64,9 @@ const Card = ({ cards, allocatedCards, profile }) => {
 			<TaskModal
 				toggleTaskModal={toggleTaskModal}
 				handleCloseTaskModal={handleCloseTaskModal}
-				currentTask={currentTask}
-				cardId={cardId}
+        currentTask={currentTask.task}
+        isAllocated={currentTask.isAllocated}
+        cardId={cardId}
 			/>
 
 			<div className="card-container-header">
@@ -85,9 +89,10 @@ const Card = ({ cards, allocatedCards, profile }) => {
 								/>
 								<p className="card-description">{card.card.cardDescription}</p>
 								{card.cardTasks.map((task) => (
+                  
 									<TaskCard
 										handleOpenTaskModal={() => handleOpenTaskModal()}
-										setCurrentTask={() => setCurrentTask(task)}
+										setCurrentTask={() => setCurrentTask({...currentTask,task})}
 										task={task}
 										key={task._id}
 										card_id={card._id}
@@ -96,7 +101,8 @@ const Card = ({ cards, allocatedCards, profile }) => {
 										deadline={task.deadline}
 										title={task.taskTitle}
 										description={task.taskDescription}
-										allocatedTo={task.allocatedTo}
+                    allocatedTo={task.allocatedTo}
+                    
 									/>
 								))}
                 
@@ -119,14 +125,15 @@ const Card = ({ cards, allocatedCards, profile }) => {
               <TaskCard
 										handleOpenTaskModal={() => handleOpenTaskModal()}
 										setCurrentTask={() => setCurrentTask(task)}
-										task={task}
-										key={task._id}
-										status={task.status}
-										deadline={task.deadline}
-                    title={task.taskTitle}
-                    description={task.taskDescription}
-                    allocatedTo={task.allocatedTo}
-                    card_id={task.cardId}
+										task={task.task}
+										key={task.task._id}
+										status={task.task.status}
+										deadline={task.task.deadline}
+                    title={task.task.taskTitle}
+                    description={task.task.taskDescription}
+                    allocatedTo={task.task.allocatedTo}
+                    card_id={task.task.cardId}
+                    isAllocated={task.alocat}
 									/>
             ))}
             

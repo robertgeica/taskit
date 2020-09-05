@@ -15,7 +15,6 @@ const TaskCard = ({ title, description, task_id, status, deadline,handleOpenTask
 	onClick={()=>{
 		handleOpenTaskModal();
     setCurrentTask(task);
-    if(!task.allocatedTo) setCardId(card_id);
 	}}
 	>
     <Card className="task-card" key={task._id}>

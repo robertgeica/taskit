@@ -15,12 +15,12 @@ const TaskModal = ({
   handleCloseTaskModal,
   currentTask,
   cardId,
+  isAllocated
 }) => {
   const [toggleUpdateTask, setToggleUpdateTask] = useState(undefined);
   const handleOpenUpdateTask = () => setToggleUpdateTask(true);
   const handleCloseUpdateTask = () => setToggleUpdateTask(false);
 
-  console.log(currentTask);
   return (
     <Modal
       isOpen={!!toggleTaskModal}
@@ -47,16 +47,17 @@ const TaskModal = ({
         >
           Edit
         </button>
-
+          {isAllocated==undefined?"":
         <button
           className="button task-button"
           onClick={() => {
-            store.dispatch(handleDeleteTask(currentTask.cardId, currentTask._id));
+            store.dispatch(handleDeleteTask(currentTask.task.cardId, currentTask.task._id));
             handleCloseTaskModal();
           }}
         >
           Delete
         </button>
+}
       </div>
 
       <div className="modal-body">
