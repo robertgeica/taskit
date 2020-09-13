@@ -92,7 +92,7 @@ console.log(currentTask)
                   
 									<TaskCard
 										handleOpenTaskModal={() => handleOpenTaskModal()}
-										setCurrentTask={() => setCurrentTask({...currentTask,task})}
+										setCurrentTask={() => setCurrentTask({...currentTask,task, isAllocated:false})}
 										task={task}
 										key={task._id}
 										card_id={card._id}

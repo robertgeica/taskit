@@ -35,9 +35,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Route exact path="/" component={Homepage} />
 
-        <Switch className="container">
+        <Switch >
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />

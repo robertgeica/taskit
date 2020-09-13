@@ -14,7 +14,7 @@
     display: flex;
 }
 .department{
-    width: 47%;
+    width: 100%;
 }
 .labels-container{
     width: 100%;
@@ -48,7 +48,6 @@
     background-color: #BDC3C7;
     margin: 20px;
     border: 2px solid black;
-    border-radius: 10px;
 
     .individual-department{
         display: flex;

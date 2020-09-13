@@ -32,7 +32,7 @@ const AddDepartamentModal = ({ data, companyId, toggleDepartament, handleCloseDe
 			<form>
 				<input type="text" name="departamentName" placeholder="departamentName" onChange={(e) => handleChange(e)} />
 				<input type="text" name="departamentManager" placeholder="departamentManager" onChange={(e) => handleChange(e)} />
-				<input type="text" name="departamentEmployees" placeholder="departamentEmployees" onChange={(e) => handleChange(e)} />
+				{/* <input type="text" name="departamentEmployees" placeholder="departamentEmployees" onChange={(e) => handleChange(e)} /> */}
 			</form>
 			<button
 				className="button"

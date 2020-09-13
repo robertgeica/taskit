@@ -71,26 +71,6 @@ const UpdateCardModal = ({
             defaultValue={newCard.cardDescription}
           />
         </div>
-        <div className="form-input">
-          <label htmlFor="phone">deadline:</label>
-          <input
-            type="text"
-            name="deadline"
-			placeholder="deadline"
-            onChange={(e) => handleChange(e)}
-            defaultValue={newCard.deadline}
-          />
-        </div>
-        <div className="form-input">
-          <label htmlFor="phone">status:</label>
-          <input
-            type="text"
-            name="status"
-			placeholder="status"	
-            onChange={(e) => handleChange(e)}
-            defaultValue={newCard.status}
-          />
-        </div>
 		<button
         className="button"
         onClick={(e) => {

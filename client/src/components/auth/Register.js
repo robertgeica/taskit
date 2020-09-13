@@ -35,7 +35,8 @@ const Register = ({ register, isAuthenticated }) => {
 	}
 
 	return (
-		<div className="register">
+		<div className="register container">
+			<h1>Register</h1>
 			<form className="form" onSubmit={e => onSubmit(e)}>
 
 				<input

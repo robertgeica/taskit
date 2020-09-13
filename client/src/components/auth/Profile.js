@@ -45,9 +45,9 @@ const Profile = ({ profile, user }) => {
       return (
         <div className="profile-container">
           <div className="profile-image">
-            <img src={`/${profile[0].image}`} alt={`${profile[0].image}`} />
+            {/* <img src={`/${profile[0].image}`} alt={`${profile[0].image}`} /> */}
           </div>
-          <FileUpload />
+          {/* <FileUpload /> */}
 
           
           <div className="profile-details">
@@ -81,7 +81,7 @@ const Profile = ({ profile, user }) => {
 				  onChange={(e)=>handleChange(e)}
                 />
               </div>
-              <div className="form-input">
+              {/* <div className="form-input">
                 <label htmlFor="image">Image:</label>
                 <input
                   type="text"
@@ -89,7 +89,7 @@ const Profile = ({ profile, user }) => {
 				  defaultValue={profile[0].image}
 				  onChange={(e)=>handleChange(e)}
                 />
-              </div>
+              </div> */}
               <div className="form-input">
                 <label htmlFor="adress">Adress:</label>
                 <input

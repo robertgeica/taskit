@@ -33,7 +33,7 @@ const AddLabelModal = ({ data, companyId, departamentId, employeeModal, handleCl
 					handleCloseAddEE();
 				}}
 			>
-				Add label
+				Add employee
 			</button>
 		</Modal>
 	);

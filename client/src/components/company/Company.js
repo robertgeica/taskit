@@ -101,7 +101,7 @@ const Company = ({ company }) => {
 			/>
 
 			{company == null || company == undefined || company.length == 0 ? (
-				<button onClick={handleOpenModal}>create new company</button>
+				<button className="button" onClick={handleOpenModal}>create new company</button>
 			) : (
 				<div>
 					<div className="company-header">
@@ -180,7 +180,7 @@ const Company = ({ company }) => {
 						))
 					)}
 					</div>
-					</div>
+					{/* </div>
 					<div className="labels">
 						<div className="label-header">
 					<h3 className="company-name">Labels:</h3>
@@ -226,7 +226,7 @@ const Company = ({ company }) => {
 					
 
           
-					</div>
+					</div> */}
 					{/* <button onClick={() => store.dispatch(handleDeleteCompany(company[0]._id))}>delete company</button> */}
 					</div>
 				</div>
